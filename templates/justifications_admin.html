@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Abonar Justificativas</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/justifications_admin.css') }}">
+</head>
+<body>
+    <div class="main">
+        <h2>Justificativas Pendentes</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Funcionário</th>
+                    <th>Data</th>
+                    <th>Motivo</th>
+                    <th>Ação</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for j in justifications %}
+                <tr>
+                    <td>{{ j.user.name }}</td>
+                    <td>{{ j.date.strftime('%d/%m/%Y') }}</td>
+                    <td>{{ j.reason }}</td>
+                    <td>
+                        <form method="POST" style="display:inline;">
+                            <input type="hidden" name="justification_id" value="{{ j.id }}">
+                            <button type="submit" name="action" value="approve" class="dashboard-back-btn">Abonar</button>
+                            <button type="submit" name="action" value="reject" class="dashboard-back-btn" style="background:var(--accent);color:#fff;">Rejeitar</button>
+                        </form>
+                    </td>
+                </tr>
+                {% else %}
+                <tr>
+                    <td colspan="4">Nenhuma justificativa pendente.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <a href="{{ url_for('main.admin') }}" class="dashboard-back-btn">Voltar</a>
+    </div>
+</body>
+</html>

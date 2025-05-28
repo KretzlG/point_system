@@ -1,0 +1,178 @@
+@import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@300&display=swap");
+
+:root {
+    --background-dark: #111;
+    --primary: #0078ff;
+    --primary-gradient: linear-gradient(45deg, #ff357a, #fff172);
+    --accent: #ff357a;
+    --text: #fff;
+    --text-muted: #bbb;
+    --box-bg: #222;
+    --box-shadow: 0 4px 24px rgba(0,0,0,0.5);
+    --border-radius: 40px;
+}
+
+body {
+    background: var(--background-dark);
+    color: var(--text);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.main {
+    max-width: 900px;
+    margin: 40px auto;
+    background: var(--box-bg);
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    padding: 32px 28px 24px 28px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.main h2 {
+    color: var(--primary);
+    font-size: 1.5em;
+    margin-bottom: 24px;
+    text-align: center;
+    font-weight: 600;
+}
+
+.filters-form {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 18px;
+    margin-bottom: 24px;
+    align-items: flex-end;
+    background: rgba(255,255,255,0.03);
+    border-radius: 18px;
+    padding: 18px 18px 6px 18px;
+    margin-bottom: 28px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+}
+
+.inputBx {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    min-width: 180px;
+}
+
+.inputBx label {
+    color: var(--text-muted);
+    font-size: 1em;
+    margin-bottom: 2px;
+    font-weight: 500;
+}
+
+.inputBx label i {
+    margin-right: 6px;
+    color: var(--primary);
+}
+
+.inputBx input,
+.inputBx select {
+    background: var(--background-dark);
+    color: var(--text);
+    border: 1.5px solid var(--primary);
+    border-radius: 18px;
+    padding: 10px 14px;
+    font-size: 1em;
+    outline: none;
+    transition: border 0.2s;
+}
+
+.inputBx input:focus,
+.inputBx select:focus {
+    border: 1.5px solid var(--accent);
+}
+
+.button-row {
+    display: flex;
+    gap: 10px;
+}
+
+.button-row button,
+.button-row a {
+    background: var(--primary-gradient);
+    color: #222;
+    border: none;
+    border-radius: 18px;
+    padding: 10px 24px;
+    font-size: 1em;
+    font-weight: 600;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    transition: background 0.2s, color 0.2s;
+}
+
+.button-row button:hover,
+.button-row a:hover {
+    background: var(--accent);
+    color: #fff;
+}
+
+.table-responsive {
+    width: 100%;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 1px 8px rgba(0,0,0,0.10);
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 18px;
+    background: var(--box-bg);
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+th, td {
+    padding: 10px 8px;
+    border-bottom: 1px solid #333;
+    text-align: center;
+    font-size: 1.05em;
+}
+
+th {
+    background: var(--primary-gradient);
+    color: #222;
+    font-weight: 700;
+}
+
+tbody tr:hover {
+    background: rgba(0,120,255,0.08);
+    transition: background 0.2s;
+}
+
+tr:last-child td {
+    border-bottom: none;
+}
+
+.export-btn {
+    background: linear-gradient(45deg, #1d6f42, #b4ec51);
+    color: #222;
+    border: none;
+    border-radius: 18px;
+    padding: 10px 24px;
+    font-size: 1em;
+    font-weight: 600;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    transition: background 0.2s, color 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.export-btn:hover {
+    background: #1d6f42;
+    color: #fff;
+}

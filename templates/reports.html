@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Relatórios de Ponto</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/reports.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="main">
+        <h2><i class="fa-solid fa-chart-line"></i> Relatórios de Ponto</h2>
+        <form method="POST" class="filters-form">
+            {% if is_admin %}
+            <div class="inputBx">
+                <label for="user_id"><i class="fa-solid fa-user"></i> Funcionário:</label>
+                <select name="user_id" id="user_id">
+                    <option value="">Todos</option>
+                    {% for user in users %}
+                        <option value="{{ user.id }}" {% if selected_user and selected_user|int == user.id %}selected{% endif %}>
+                            {{ user.name }} ({{ user.username }})
+                        </option>
+                    {% endfor %}
+                </select>
+            </div>
+            {% endif %}
+            <div class="inputBx">
+                <label for="start_date"><i class="fa-solid fa-calendar-day"></i> Data Inicial:</label>
+                <input type="date" name="start_date" id="start_date" value="{{ start_date or '' }}">
+            </div>
+            <div class="inputBx">
+                <label for="end_date"><i class="fa-solid fa-calendar-day"></i> Data Final:</label>
+                <input type="date" name="end_date" id="end_date" value="{{ end_date or '' }}">
+            </div>
+            <div class="button-row">
+                <button type="submit"><i class="fa-solid fa-filter"></i> Filtrar</button>
+                {% if records %}
+                <a href="{{ url_for('main.download_report', user_id=selected_user, start_date=start_date, end_date=end_date) }}" class="export-btn">
+                    <i class="fa-solid fa-file-excel"></i> Exportar .xls
+                </a>
+                {% endif %}
+                <a href="{{ url_for('main.admin') if is_admin else url_for('main.employee') }}"><i class="fa-solid fa-arrow-left"></i> Voltar</a>
+            </div>
+        </form>
+        <div class="table-responsive">
+            <table>
+                <thead>
+                    <tr>
+                        {% if is_admin %}
+                        <th>Funcionário</th>
+                        {% endif %}
+                        <th>Data</th>
+                        <th>Entrada</th>
+                        <th>Início Almoço</th>
+                        <th>Fim Almoço</th>
+                        <th>Saída</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for record in records %}
+                    <tr>
+                        {% if is_admin %}
+                        <td>{{ record.user.name }}</td>
+                        {% endif %}
+                        <td>{{ record.date.strftime('%d/%m/%Y') }}</td>
+                        <td>{{ record.entry_time.strftime('%H:%M') if record.entry_time else '-' }}</td>
+                        <td>{{ record.lunch_start.strftime('%H:%M') if record.lunch_start else '-' }}</td>
+                        <td>{{ record.lunch_end.strftime('%H:%M') if record.lunch_end else '-' }}</td>
+                        <td>{{ record.exit_time.strftime('%H:%M') if record.exit_time else '-' }}</td>
+                    </tr>
+                    {% else %}
+                    <tr>
+                        <td colspan="6" style="text-align:center;">Nenhum registro encontrado.</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>

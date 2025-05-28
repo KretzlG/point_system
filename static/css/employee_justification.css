@@ -1,0 +1,173 @@
+@import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@300&display=swap");
+
+:root {
+    --background-dark: #111;
+    --primary: #0078ff;
+    --primary-gradient: linear-gradient(45deg, #ff357a, #fff172);
+    --accent: #ff357a;
+    --text: #fff;
+    --text-muted: #bbb;
+    --box-bg: #222;
+    --box-shadow: 0 4px 24px rgba(0,0,0,0.5);
+    --border-radius: 40px;
+}
+
+body {
+    background: var(--background-dark);
+    color: var(--text);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.main {
+    max-width: 420px;
+    margin: 48px auto;
+    background: var(--box-bg);
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    padding: 38px 32px 28px 32px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.main h2 {
+    color: var(--primary);
+    font-size: 2em;
+    margin-bottom: 10px;
+    text-align: center;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.justification-form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.inputBx {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-bottom: 8px;
+    transition: box-shadow 0.2s;
+    box-shadow: none !important;
+}
+
+.inputBx.input-focus {
+    box-shadow: none !important;
+    border-radius: 18px;
+}
+
+.inputBx label {
+    color: var(--text-muted);
+    font-size: 1em;
+    margin-bottom: 2px;
+    font-weight: 500;
+}
+
+.inputBx input[type="date"],
+.inputBx textarea {
+    background: var(--background-dark);
+    color: var(--text);
+    border: 1.5px solid var(--primary);
+    border-radius: 18px;
+    padding: 12px 16px;
+    font-size: 1em;
+    outline: none;
+    transition: border 0.2s, box-shadow 0.2s;
+}
+
+.inputBx input[type="date"]:focus,
+.inputBx textarea:focus {
+    border: 1.5px solid var(--accent);
+    box-shadow: none !important;
+    outline: none !important;
+}
+
+.inputBx textarea {
+    min-height: 90px;
+    resize: vertical;
+}
+
+.button-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 14px;
+    margin-top: 18px;
+    width: 100%;
+}
+
+.button-row button,
+.button-row a {
+    flex: 1;
+    background: var(--primary-gradient);
+    color: #222;
+    border: none;
+    border-radius: 18px;
+    padding: 14px 0;
+    font-size: 1.08em;
+    font-weight: 700;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.10);
+    transition: background 0.18s, color 0.18s, transform 0.08s;
+    outline: none;
+    margin-bottom: 0;
+}
+
+.button-row button:active,
+.button-row a:active {
+    transform: scale(0.97);
+    background: var(--accent);
+    color: #fff;
+}
+
+.button-row button:hover,
+.button-row a:hover {
+    background: var(--accent);
+    color: #fff;
+}
+
+.messages {
+    margin-top: 22px;
+    list-style: none;
+    padding: 0;
+    width: 100%;
+}
+
+.messages li {
+    padding: 12px;
+    border-radius: 10px;
+    margin-bottom: 8px;
+    font-weight: 500;
+    text-align: center;
+    font-size: 1em;
+}
+
+.messages li.success {
+    background: #2ecc40;
+    color: #fff;
+}
+
+.messages li.danger {
+    background: #ff357a;
+    color: #fff;
+}
+
+@media (max-width: 500px) {
+    .main {
+        padding: 18px 6px 12px 6px;
+        max-width: 98vw;
+    }
+    .button-row button,
+    .button-row a {
+        font-size: 0.98em;
+        padding: 10px 0;
+    }
+}

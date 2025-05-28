@@ -1,0 +1,114 @@
+@import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@300&display=swap");
+
+:root {
+    --background-dark: #111;
+    --primary: #0078ff;
+    --primary-gradient: linear-gradient(45deg, #ff357a, #fff172);
+    --accent: #ff357a;
+    --text: #fff;
+    --text-muted: #bbb;
+    --box-bg: #222;
+    --box-shadow: 0 4px 24px rgba(0,0,0,0.5);
+    --border-radius: 40px;
+}
+
+body {
+    background: var(--background-dark);
+    color: var(--text);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.main {
+    max-width: 400px;
+    margin: 40px auto;
+    background: var(--box-bg);
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    padding: 32px 28px 24px 28px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.main h2 {
+    color: var(--primary);
+    font-size: 1.5em;
+    margin-bottom: 24px;
+    text-align: center;
+    font-weight: 600;
+}
+
+form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.inputBx {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-bottom: 8px;
+}
+
+.inputBx label {
+    color: var(--text-muted);
+    font-size: 1em;
+    margin-bottom: 2px;
+    font-weight: 500;
+}
+
+.inputBx input[type="text"],
+.inputBx input[type="password"],
+.inputBx input[type="time"],
+.inputBx select {
+    background: var(--background-dark);
+    color: var(--text);
+    border: 1.5px solid var(--primary);
+    border-radius: 18px;
+    padding: 10px 14px;
+    font-size: 1em;
+    outline: none;
+    transition: border 0.2s;
+}
+
+.inputBx input[type="text"]:focus,
+.inputBx input[type="password"]:focus,
+.inputBx input[type="time"]:focus,
+.inputBx select:focus {
+    border: 1.5px solid var(--accent);
+}
+
+.button-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.button-row button,
+.button-row a {
+    flex: 1;
+    background: var(--primary-gradient);
+    color: #222;
+    border: none;
+    border-radius: 18px;
+    padding: 12px 0;
+    font-size: 1.1em;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 10px;
+    text-align: center;
+    text-decoration: none;
+    transition: background 0.2s, color 0.2s;
+    box-shadow: 0 2px 8px #0004;
+}
+
+.button-row button:hover,
+.button-row a:hover {
+    background: var(--accent);
+    color: #fff;
+}

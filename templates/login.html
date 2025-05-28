@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/login.css') }}">
+</head>
+<body>
+    <div class="ring">
+        <i style="--clr:#00ff0a;"></i>
+        <i style="--clr:#ff0057;"></i>
+        <i style="--clr:#fffd44;"></i>
+        <div class="login">
+            <h2>Bem-vindo ao Sistema Ponto <br> do Terceirão!<br> </h2>
+            <p>Faça login para continuar.</p>
+            <form action="/login" method="post" class="login-form">
+                {{ form.hidden_tag() }}
+                <div class="inputBx">
+                    {{ form.username(class_="input", id="username", placeholder="Usuário", required=True) }}
+                </div>
+                <div class="inputBx">
+                    {{ form.password(class_="input", id="password", placeholder="Senha", required=True) }}
+                </div>
+                <div class="inputBx">
+                    {{ form.submit(class_="input") }}
+                </div>
+            </form>
+            <div class="links">
+                <a href="#">Esqueceu a senha?</a>
+            </div>
+            {% with messages = get_flashed_messages(with_categories=true) %}
+              {% if messages %}
+                {% for category, message in messages %}
+                  <div class="alert alert-{{ category }}">{{ message }}</div>
+                {% endfor %}
+              {% endif %}
+            {% endwith %}
+        </div>
+    </div>
+</body>
+</html>

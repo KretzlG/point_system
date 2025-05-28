@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Cadastrar Funcionário</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/register_employees.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="main">
+        <h2><i class="fa-solid fa-user-plus"></i> Cadastrar Funcionário</h2>
+        <form method="POST" action="{{ url_for('main.register_employees') }}">
+            <div class="inputBx">
+                <label for="name"><i class="fa-solid fa-user"></i> Nome:</label>
+                <input type="text" id="name" name="name" required autocomplete="off">
+            </div>
+            <div class="inputBx">
+                <label for="username"><i class="fa-solid fa-id-badge"></i> Usuário:</label>
+                <input type="text" id="username" name="username" required autocomplete="off">
+            </div>
+            <div class="inputBx">
+                <label for="password"><i class="fa-solid fa-lock"></i> Senha:</label>
+                <input type="password" id="password" name="password" required autocomplete="off">
+            </div>
+            <div class="inputBx admin-switch">
+                <label class="switch-label">
+                    Administrador
+                    <input type="checkbox" id="is_admin" name="is_admin" value="1">
+                    <span class="slider"></span>
+                </label>
+                <span id="admin-desc" class="admin-desc">Acesso restrito</span>
+            </div>
+            <div class="button-row">
+                <button type="submit"><i class="fa-solid fa-check"></i> Cadastrar</button>
+                <a href="{{ url_for('main.admin') }}"><i class="fa-solid fa-arrow-left"></i> Voltar</a>
+            </div>
+        </form>
+        {% with messages = get_flashed_messages(with_categories=true) %}
+          {% if messages %}
+            <ul>
+              {% for category, message in messages %}
+                <li style="color: red;">{{ message }}</li>
+              {% endfor %}
+            </ul>
+          {% endif %}
+        {% endwith %}
+    </div>
+    <script>
+        // Switch admin: muda cor e texto
+        const adminSwitch = document.getElementById('is_admin');
+        const adminDesc = document.getElementById('admin-desc');
+        function updateAdminDesc() {
+            if(adminSwitch.checked) {
+                adminDesc.textContent = "Acesso total ao sistema";
+                adminDesc.classList.add('active');
+            } else {
+                adminDesc.textContent = "Acesso restrito";
+                adminDesc.classList.remove('active');
+            }
+        }
+        adminSwitch.addEventListener('change', updateAdminDesc);
+        updateAdminDesc();
+    </script>
+</body>
+</html>

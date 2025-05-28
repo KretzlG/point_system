@@ -1,0 +1,207 @@
+@import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@300&display=swap");
+
+:root {
+    --background-dark: #111;
+    --primary: #0078ff;
+    --primary-gradient: linear-gradient(45deg, #ff357a, #fff172);
+    --accent: #ff357a;
+    --text: #fff;
+    --text-muted: #bbb;
+    --box-bg: #222;
+    --box-shadow: 0 4px 24px rgba(0,0,0,0.5);
+    --border-radius: 40px;
+}
+
+body {
+    background: var(--background-dark);
+    color: var(--text);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: "Quicksand", sans-serif;
+}
+
+.main {
+    max-width: 500px; /* aumente o tamanho */
+    margin: 48px auto;
+    background: var(--box-bg);
+    border-radius: 32px;
+    box-shadow: var(--box-shadow);
+    padding: 48px 40px 36px 40px; /* aumente o padding */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.main h2 {
+    color: var(--primary);
+    font-size: 1.7em;
+    margin-bottom: 28px;
+    text-align: center;
+    font-weight: 700;
+    letter-spacing: 1px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.inputBx {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-bottom: 10px;
+}
+
+.inputBx label {
+    color: var(--text-muted);
+    font-size: 1.07em;
+    margin-bottom: 2px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 7px;
+}
+
+.inputBx input[type="text"],
+.inputBx input[type="password"] {
+    background: var(--background-dark);
+    color: var(--text);
+    border: 1.5px solid var(--primary);
+    border-radius: 18px;
+    padding: 12px 16px 12px 38px;
+    font-size: 1.08em;
+    outline: none;
+    transition: border 0.2s, box-shadow 0.2s;
+    position: relative;
+}
+
+.inputBx input[type="text"]:focus,
+.inputBx input[type="password"]:focus {
+    border: 1.5px solid var(--accent);
+    box-shadow: 0 0 0 2px #ff357a33;
+}
+
+.inputBx i {
+    position: absolute;
+    left: 14px;
+    top: 38px;
+    color: var(--primary);
+    font-size: 1.1em;
+}
+
+.password-visualize {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 4px;
+    margin-left: 2px;
+    font-size: 0.98em;
+    color: var(--text-muted);
+    cursor: pointer;
+    user-select: none;
+}
+
+.password-input-wrapper {
+    position: relative;
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.password-input-wrapper input[type="password"] {
+    width: 100%;
+    border-radius: 18px;
+    padding-right: 36px; /* espaço para o botão do olho */
+    border: 1.5px solid var(--primary);
+}
+
+.password-eye-btn {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--primary);
+    padding: 0;
+    display: flex;
+    align-items: center;
+    font-size: 1.15em;
+    height: 24px;
+}
+
+.button-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.button-row button,
+.button-row a {
+    flex: 1;
+    background: var(--primary-gradient);
+    color: #222;
+    border: none;
+    border-radius: 18px;
+    padding: 13px 0;
+    font-size: 1.13em;
+    font-weight: 700;
+    cursor: pointer;
+    margin-top: 10px;
+    text-align: center;
+    text-decoration: none;
+    transition: background 0.2s, color 0.2s, transform 0.1s;
+    box-shadow: 0 2px 8px #0004;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.button-row button:hover,
+.button-row a:hover {
+    background: var(--accent);
+    color: #fff;
+    transform: translateY(-2px) scale(1.03);
+}
+
+ul {
+    margin-top: 18px;
+    padding-left: 18px;
+}
+
+.password-toggle {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    margin-top: 6px;
+    margin-left: 2px;
+}
+
+.password-toggle span {
+    margin: 0;
+    font-size: 0.98em;
+    color: var(--text-muted);
+    user-select: none;
+}
+
+@media (max-width: 500px) {
+    .main {
+        max-width: 98vw;
+        padding: 18px 4vw 18px 4vw;
+    }
+    .button-row {
+        flex-direction: column;
+        gap: 8px;
+    }
+}

@@ -1,0 +1,118 @@
+@import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@300&display=swap");
+
+:root {
+    --background-dark: #111;
+    --background-light: #181818;
+    --primary: #0078ff;
+    --primary-gradient: linear-gradient(45deg, #ff357a, #fff172);
+    --accent: #ff357a;
+    --text: #fff;
+    --text-muted: #bbb;
+    --box-bg: #222;
+    --box-shadow: 0 4px 24px rgba(0,0,0,0.5);
+    --border-radius: 40px;
+}
+
+body {
+    background: var(--background-dark);
+    color: var(--text);
+    font-family: "Quicksand", sans-serif;
+    min-height: 100vh;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.main {
+    background: var(--box-bg);
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    padding: 36px 32px 28px 32px;
+    margin: 40px auto;
+    max-width: 700px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.main h2 {
+    color: var(--primary);
+    font-size: 2em;
+    margin-bottom: 18px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-align: center;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background: rgba(255,255,255,0.02);
+    border-radius: 12px;
+    overflow: hidden;
+    margin-bottom: 24px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+}
+
+th, td {
+    padding: 14px 10px;
+    text-align: center;
+    color: var(--text);
+}
+
+th {
+    background: var(--primary-gradient);
+    color: #222;
+    font-weight: 700;
+    font-size: 1.05em;
+}
+
+tbody tr:nth-child(even) {
+    background: rgba(255,255,255,0.03);
+}
+
+tbody tr:nth-child(odd) {
+    background: rgba(255,255,255,0.01);
+}
+
+.dashboard-back-btn {
+    background: var(--primary-gradient);
+    color: #222;
+    border: none;
+    border-radius: 16px;
+    padding: 10px 22px;
+    font-size: 1em;
+    font-weight: 700;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.10);
+    transition: background 0.18s, color 0.18s, transform 0.08s;
+    outline: none;
+    margin: 0 4px 0 0;
+    display: inline-block;
+}
+
+.dashboard-back-btn:hover,
+.dashboard-back-btn:focus {
+    background: var(--accent);
+    color: #fff;
+    transform: scale(0.97);
+}
+
+@media (max-width: 800px) {
+    .main {
+        padding: 18px 6px 12px 6px;
+        max-width: 98vw;
+    }
+    table, th, td {
+        font-size: 0.98em;
+        padding: 8px 4px;
+    }
+    .dashboard-back-btn {
+        font-size: 0.95em;
+        padding: 8px 10px;
+    }
+}

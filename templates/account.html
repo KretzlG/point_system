@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Minha Conta</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/account.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="main" style="max-width: 420px; margin: 60px auto;">
+        <h2><i class="fa-solid fa-user-gear"></i> Minha Conta</h2>
+        <form method="POST">
+            <div class="inputBx">
+                <label for="name"><i class="fa-solid fa-user"></i> Nome:</label>
+                <input type="text" id="name" name="name" value="{{ user.name }}" required>
+            </div>
+            <div class="inputBx">
+                <label for="username"><i class="fa-solid fa-id-badge"></i> Usuário:</label>
+                <input type="text" id="username" name="username" value="{{ user.username }}" readonly>
+            </div>
+            <div class="inputBx">
+                <label for="password"><i class="fa-solid fa-lock"></i> Nova Senha:</label>
+                <div class="password-input-wrapper">
+                    <input type="password" id="password" name="password" value="{{ user.password }}" placeholder="Deixe em branco para não alterar">
+                    <button type="button" class="password-eye-btn" onclick="togglePassword()" tabindex="-1">
+                        <i id="eye-icon" class="fa-regular fa-eye"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="button-row">
+                <button type="submit"><i class="fa-solid fa-floppy-disk"></i> Salvar</button>
+                <a href="{{ url_for('main.admin') if user.is_admin else url_for('main.employee') }}">
+                    <i class="fa-solid fa-arrow-left"></i> Voltar
+                </a>
+            </div>
+        </form>
+        {% with messages = get_flashed_messages(with_categories=true) %}
+          {% if messages %}
+            <ul>
+              {% for category, message in messages %}
+                <li style="color: red;">{{ message }}</li>
+              {% endfor %}
+            </ul>
+          {% endif %}
+        {% endwith %}
+    </div>
+    <script src="{{ url_for('static', filename='js/account.js') }}"></script>
+</body>
+</html>

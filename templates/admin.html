@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Painel Admin</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/admin.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="menu-btn" id="menuicn">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <div class="logosec">
+            <div class="logo">Sistema Ponto</div>
+        </div>
+        <div class="user-menu" id="userMenu">
+            <span class="user-icon"><i class="fa-solid fa-user"></i></span>
+            <span class="user-name">{{ username }}</span>
+            <div class="user-dropdown" id="userDropdown">
+                <a href="{{ url_for('main.account') }}" class="account-btn">
+                    <i class="fa-solid fa-user-gear"></i> Minha Conta
+                </a>
+                <form method="POST" action="{{ url_for('main.logout') }}">
+                    <button type="submit" class="logout-btn">
+                        <i class="fa-solid fa-right-from-bracket"></i> Sair
+                    </button>
+                </form>
+            </div>
+        </div>
+    </header>
+    <!-- Menu lateral -->
+    <div class="main-container">
+        <div class="navcontainer">
+            <nav class="nav">
+                <div class="nav-upper-options">
+                    <a href="{{ url_for('main.clock') }}" class="nav-option option1">
+                        <i class="fa-solid fa-clock"></i>
+                        <span>Registro de Ponto</span>
+                    </a>
+                    <a href="{{ url_for('main.justification') }}" class="nav-option option2">
+                        <i class="fa-solid fa-file-signature"></i>
+                        <span>Justificativa</span>
+                    </a>
+                    <a href="{{ url_for('main.register_employees') }}" class="nav-option option1">
+                        <i class="fa-solid fa-user-plus"></i>
+                        <span>Cadastrar Funcionário</span>
+                    </a>
+                    <a href="{{ url_for('main.employee_schedule') }}" class="nav-option option2">
+                        <i class="fa-solid fa-calendar-check"></i>
+                        <span>Cadastrar Horário Funcionário</span>
+                    </a>
+                    <a href="{{ url_for('main.justifications_admin') }}" class="nav-option option2">
+                        <i class="fa-solid fa-user-check"></i>
+                        <span>Abonar Justificativas</span>
+                    </a>
+                    <a href="{{ url_for('main.reports') }}" class="nav-option option3">
+                        <i class="fa-solid fa-chart-line"></i>
+                        <span>Relatórios</span>
+                    </a>
+                </div>
+            </nav>
+        </div>
+        <div class="main" id="main-content">
+            <div class="dashboard-header">
+                <h1>Painel Administrador</h1>
+                <p>Bem-vindo ao painel de administrador!</p>
+                <div class="dashboard-clock" id="dashboard-clock">--:--:--</div>
+            </div>
+            <div class="dashboard-cards">
+                <div class="card">
+                    <h3>Total de Funcionários</h3>
+                    <p>{{ total_employees }}</p>
+                </div>
+                <div class="card">
+                    <h3>Registros de Ponto Hoje</h3>
+                    <p>{{ total_records_today }}</p>
+                </div>
+                <div class="card">
+                    <h3>Justificativas Pendentes</h3>
+                    <p>{{ total_justifications_pending }}</p>
+                </div>
+                <div class="card">
+                    <h3>Faltas Hoje</h3>
+                    <p>{{ total_absences_today }}</p>
+                </div>
+            </div>            
+        </div>
+    </div>
+    <script src="{{ url_for('static', filename='js/admin.js') }}"></script>
+    <script>
+    // Relógio digital no painel
+    function updateDashboardClock() {
+        const now = new Date();
+        const h = String(now.getHours()).padStart(2, '0');
+        const m = String(now.getMinutes()).padStart(2, '0');
+        const s = String(now.getSeconds()).padStart(2, '0');
+        document.getElementById('dashboard-clock').textContent = `${h}:${m}:${s}`;
+    }
+    setInterval(updateDashboardClock, 1000);
+    updateDashboardClock();
+
+    // Animação nos cards ao passar o mouse
+    document.querySelectorAll('.card').forEach(card => {
+        card.addEventListener('mouseenter', () => {
+            card.classList.add('card-hover');
+        });
+        card.addEventListener('mouseleave', () => {
+            card.classList.remove('card-hover');
+        });
+    });
+    </script>
+</body>
+</html>

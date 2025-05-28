@@ -1,0 +1,172 @@
+@import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@300&display=swap");
+
+:root {
+    --background-dark: #111;
+    --primary: #0078ff;
+    --primary-gradient: linear-gradient(45deg, #ff357a, #fff172);
+    --accent: #ff357a;
+    --text: #fff;
+    --text-muted: #bbb;
+    --box-bg: #222;
+    --box-shadow: 0 4px 24px rgba(0,0,0,0.5);
+    --border-radius: 40px;
+}
+
+body {
+    background: var(--background-dark);
+    color: var(--text);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.main {
+    max-width: 420px;
+    width: 100%;
+    margin: 40px auto;
+    background: var(--box-bg);
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    padding: 36px 32px 28px 32px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.main h2 {
+    color: var(--primary);
+    font-size: 2em;
+    margin-bottom: 18px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-align: center;
+}
+
+.clock-time {
+    font-size: 2.2em;
+    font-weight: 600;
+    color: var(--accent);
+    margin-bottom: 22px;
+    letter-spacing: 2px;
+    background: rgba(255,255,255,0.04);
+    border-radius: 12px;
+    padding: 10px 0;
+    width: 100%;
+    text-align: center;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+}
+
+.clock-form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+}
+
+.button-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 14px;
+    margin-top: 18px;
+    width: 100%;
+}
+
+.button-row button,
+.button-row a {
+    flex: 1;
+    background: var(--primary-gradient);
+    color: #222;
+    border: none;
+    border-radius: 16px;
+    padding: 14px 0;
+    font-size: 1.08em;
+    font-weight: 700;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.10);
+    transition: background 0.18s, color 0.18s, transform 0.08s;
+    outline: none;
+    margin-bottom: 0;
+}
+
+.button-row button:active,
+.button-row a:active {
+    transform: scale(0.97);
+    background: var(--accent);
+    color: #fff;
+}
+
+.button-row button:hover,
+.button-row a:hover {
+    background: var(--accent);
+    color: #fff;
+}
+
+.messages {
+    margin-top: 22px;
+    list-style: none;
+    padding: 0;
+    width: 100%;
+}
+
+.messages li {
+    padding: 12px;
+    border-radius: 10px;
+    margin-bottom: 8px;
+    font-weight: 500;
+    text-align: center;
+    font-size: 1em;
+}
+
+.messages li.success {
+    background: #2ecc40;
+    color: #fff;
+}
+
+.messages li.danger {
+    background: #ff357a;
+    color: #fff;
+}
+
+.mini-report {
+    margin-top: 24px;
+    width: 100%;
+    background: rgba(255,255,255,0.03);
+    border-radius: 12px;
+    padding: 14px 18px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+}
+.mini-report h3 {
+    font-size: 1.1em;
+    color: var(--primary);
+    margin-bottom: 10px;
+    text-align: center;
+}
+.mini-report ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.mini-report li {
+    font-size: 1em;
+    color: var(--text-muted);
+    margin-bottom: 4px;
+    text-align: center;
+}
+
+@media (max-width: 500px) {
+    .main {
+        padding: 18px 6px 12px 6px;
+        max-width: 98vw;
+    }
+    .clock-time {
+        font-size: 1.3em;
+    }
+    .button-row button,
+    .button-row a {
+        font-size: 0.98em;
+        padding: 10px 0;
+    }
+}

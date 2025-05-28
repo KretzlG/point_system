@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8" />
+    <title>Registro de Ponto</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/employee_clock.css') }}">
+</head>
+<body>
+    <div class="main">
+        <h2>Registro de Ponto</h2>
+        <div class="clock-time" id="clock-time">--:--:--</div>
+        <form method="POST" class="clock-form">
+            <div class="button-row">
+                <button name="punch_type" value="entry" type="submit">Entrada</button>
+                <button name="punch_type" value="exit" type="submit">Saída</button>                
+            </div>
+            <div class="button-row">
+                <button name="punch_type" value="lunch_start" type="submit">Início Almoço</button>
+                <button name="punch_type" value="lunch_end" type="submit">Fim Almoço</button>
+                
+            </div>
+        </form>
+        <!-- Mini relatório de batidas do dia -->
+        <div class="mini-report">
+            <h3>Batidas de hoje</h3>
+            <ul>
+                {% if record and record.entry_time %}
+                    <li>Entrada: {{ record.entry_time.strftime('%H:%M:%S') }}</li>
+                {% endif %}
+                {% if record and record.lunch_start %}
+                    <li>Início Almoço: {{ record.lunch_start.strftime('%H:%M:%S') }}</li>
+                {% endif %}
+                {% if record and record.lunch_end %}
+                    <li>Fim Almoço: {{ record.lunch_end.strftime('%H:%M:%S') }}</li>
+                {% endif %}
+                {% if record and record.exit_time %}
+                    <li>Saída: {{ record.exit_time.strftime('%H:%M:%S') }}</li>
+                {% endif %}
+                {% if not record or (not record.entry_time and not record.lunch_start and not record.lunch_end and not record.exit_time) %}
+                    <li>Nenhuma batida registrada hoje.</li>
+                {% endif %}
+            </ul>
+        </div>
+        <div class="button-row">
+            {% if is_admin %}
+                <a href="{{ url_for('main.admin') }}">Voltar</a>
+            {% else %}
+                <a href="{{ url_for('main.employee') }}">Voltar</a>
+            {% endif %}
+        </div>
+        {% with messages = get_flashed_messages(with_categories=true) %}
+          {% if messages %}
+            <ul class="messages">
+            {% for category, message in messages %}
+              <li class="{{ category }}">{{ message }}</li>
+            {% endfor %}
+            </ul>
+          {% endif %}
+        {% endwith %}
+    </div>
+    <script>
+        // Relógio digital em tempo real
+        function updateClock() {
+            const now = new Date();
+            const h = String(now.getHours()).padStart(2, '0');
+            const m = String(now.getMinutes()).padStart(2, '0');
+            const s = String(now.getSeconds()).padStart(2, '0');
+            document.getElementById('clock-time').textContent = `${h}:${m}:${s}`;
+        }
+        setInterval(updateClock, 1000);
+        updateClock();
+    </script>
+</body>
+</html>
